@@ -154,7 +154,11 @@ jobs:
             echo "No recovery makefile file found!"
         fi
       continue-on-error: true
-      
+
+    - name: Installing py-is-py2 for legacy builds
+      run: |
+        sudo apt-get install python-is-python2
+
     - name: Building Image 
       run: |
         cd android-recovery

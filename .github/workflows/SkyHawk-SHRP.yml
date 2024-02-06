@@ -6,15 +6,16 @@ on:
       MANIFEST:
         description: 'SHRP Manifest'
         required: true
-        default: 'https://github.com/SHRP/manifest.git'
+        default: 'https://github.com/lazymeao/manifest_sh.git'
       MANIFEST_BRANCH:
         description: 'SHRP Manifest Branch'
         required: true
-        default: 'v3_11.0'
+        default: ''
         type: choice
         options:
         - shrp-12.1
         - v3_11.0
+        - v3_10.0
         - v3_9.0
       DEVICE_TREE:
         description: 'Custom Recovery Tree' # Your already made Device Tree for TWRP
@@ -49,17 +50,11 @@ on:
       LDCHECKPATH:
         description: 'Path of blobs to check' # Use it know what kind of dependencies your missing for decryption blobs.
         required: true
-        default: ''
-        type: choice
-        options:
-        - system/bin/qseecomd
-        - system/bin/android.hardware.gatekeeper@1.0-service-qti
-        - system/bin/android.hardware.keymaster@4.0-service-qti
-        - system/bin/android.hardware.keymaster@4.1-service-qti
+        default: 'system/bin/qseecomd'
 
 jobs:
   build:
-    name: Build SHRP by ${{ github.actor }}
+    name: SHRP Build Branch ${{ github.event.inputs.MANIFEST_BRANCH }}
     runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
     env:
@@ -149,6 +144,10 @@ jobs:
             echo "No recovery makefile file found!"
         fi
       continue-on-error: true
+
+    - name: Installing py-is-py2 for legacy builds
+      run: |
+        sudo apt-get install python-is-python2
 
     - name: Building Image 
       run: |
