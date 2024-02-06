@@ -10,7 +10,11 @@ on:
       MANIFEST_BRANCH:
         description: 'SHRP Manifest Branch'
         required: true
-        default: 'v3_11.0'
+        default: ''
+        - shrp-12.1
+        - v3_11.0
+        - v3_10.0
+        - v3_9.0
       DEVICE_TREE:
         description: 'Custom Recovery Tree' # Your already made Device Tree for TWRP
         required: true
