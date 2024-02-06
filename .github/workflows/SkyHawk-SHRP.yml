@@ -11,6 +11,8 @@ on:
         description: 'SHRP Manifest Branch'
         required: true
         default: ''
+        type: choice
+        options:
         - shrp-12.1
         - v3_11.0
         - v3_10.0
