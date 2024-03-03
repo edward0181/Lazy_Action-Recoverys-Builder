@@ -16,44 +16,34 @@ on:
         - android-8.1
         - android-7.1
         - android-6.0
-      DEVICE_TREE:
-        description: 'Custom Recovery Tree' # Your already made Device Tree for TWRP
+      DEVICE_TREE: 'https://github.com/abdalrahmaneissa/android_device_xiaomi_courbet-PBRP.git'
+        description: 'PBRP Recovery Tree' # Your already made Device Tree for TWRP
         required: true
-        default: 'https://github.com/edward0181/android_device_samsung_a23xq'
-      DEVICE_TREE_BRANCH:
+        default: 'https://github.com/abdalrahmaneissa/android_device_xiaomi_courbet-PBRP.git'
+      DEVICE_TREE_BRANCH: 'android-12.1'
         description: 'Custom Recovery Tree Branch' # Your Device Tree Branch, make sure it's right.
         required: true
-        default: 'PBRP'
-      DEVICE_PATH:
+      DEVICE_PATH: 'device/xiaomi/courbet-PBRP'
         description: 'Specify your Device Path' # As is, just like your DEVICE_PATH in your BoardConfig.mk
         required: true
-        default: 'device/samsung/a23xq'
-      DEVICE_NAME:
+      DEVICE_NAME: 'courbet'
         description: 'Specify your Device Codename' # As is, just like your PRODUCT_DEVICE in your device tree.
         required: true
-        default: 'a23xq' 
-      BUILD_TARGET:
+      BUILD_TARGET: 'pbrp'
         description: 'Specify your Build Target' # Pick among boot, recovery and vendor_boot
         required: true
-        default: 'pbrp'
-        type: choice
-        options:
-        - pbrp
-        - bootimage
-        - recoveryimage
-        - vendorbootimage
-      LDCHECK:
+      LDCHECK: 'false'
         description: 'Use LDCHECK'
         required: false
         default: 'false'
         type: boolean
-      LDCHECKPATH:
+      LDCHECKPATH: 'system/bin/qseecomd'
         description: 'Path of blobs to check' # Use it know what kind of dependencies your missing for decryption blobs.
         required: true
         default: 'system/bin/qseecomd'
 
-jobs:
-  build:
+jobs: Abdalrahman_Eissa
+  build: Abdalrahman_Eissa
     name: Build PBRP by ${{ github.actor }}
     runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
